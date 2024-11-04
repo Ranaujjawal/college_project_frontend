@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
-
+import './login.css'
+import Footer from './footer.js'
+import Navbar from './navbar.js';
 const LoginForm = ({ onSubmit }) => {
   const navigate = useNavigate(); // Initialize useNavigate
   const [loginData, setLoginData] = useState({
@@ -30,62 +32,62 @@ const LoginForm = ({ onSubmit }) => {
   };
 
   const handleForgotPassword = () => {
-    navigate('/forgot-password'); // Navigate to the forgot password route
+    navigate('/forgotpassword'); // Navigate to the forgot password route
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <form onSubmit={handleSubmit} style={{ maxWidth: '400px', width: '100%' }}>
-        <h2>Login</h2>
+    <>
+    <Navbar/>
+    <div className='outerbox'>
+    <div className='outerboxpaddingtop'></div>
+    <div className="login-container">
+        <form onSubmit={handleSubmit} className="login-form">
+            <h4>We are <span className="brand-name">NUVA</span></h4>
+            <p>Welcome back! Log in to your account to view today's clients:</p>
 
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            value={loginData.email}
-            onChange={handleChange}
-            placeholder="Enter your email"
-            style={{ width: '100%', padding: '8px', margin: '8px 0' }}
-          />
-        </div>
+            <div className="floating-label">
+                <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={loginData.email}
+                    onChange={handleChange}
+                    placeholder=" "
+                    className="input-field"
+                />
+                <label htmlFor="email" className="input-label">Email:</label>
+                <div className="input-icon">
+                   
+                </div>
+            </div>
 
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            value={loginData.password}
-            onChange={handleChange}
-            placeholder="Enter your password"
-            style={{ width: '100%', padding: '8px', margin: '8px 0' }}
-          />
-        </div>
+            <div className="floating-label">
+                <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    value={loginData.password}
+                    onChange={handleChange}
+                    placeholder=" "
+                    className="input-field"
+                />
+                <label htmlFor="password" className="input-label">Password:</label>
+                <div className="input-icon">
+                    
+                </div>
+            </div>
 
-        <button type="submit" style={{ width: '100%', padding: '10px', marginTop: '10px' }}>
-          Login
-        </button>
-
-        <button 
-          type="button" 
-          onClick={handleNavigateToRegister} 
-          style={{ width: '100%', padding: '10px', marginTop: '10px', backgroundColor: 'lightblue', border: 'none', cursor: 'pointer' }}
-        >
-          Register
-        </button>
-
-        <button 
-          type="button" 
-          onClick={handleForgotPassword} 
-          style={{ width: '100%', padding: '10px', marginTop: '10px', backgroundColor: 'lightgreen', border: 'none', cursor: 'pointer' }}
-        >
-          Forgot Password?
-        </button>
-      </form>
+            <button type="submit" className="submit1-button">Login</button>
+            <button type="button" onClick={handleNavigateToRegister} className="register-button">Register</button>
+            <button type="button" onClick={handleForgotPassword} className="forgot-password-button">Forgot Password?</button>
+        </form>
     </div>
-  );
+    <div className='outerboxpaddingbot'></div>
+    </div>
+    <Footer/>
+    </>
+);
+
 };
 
 export default LoginForm;

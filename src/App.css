@@ -1,56 +1,45 @@
-/* Basic styles for the entire app */
+body{
+  margin: 0;
+}
 .app-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   min-height: 100vh;
-  background-color: #f5f5f5;
 }
 
-/* Form container styling */
-.form-container {
-  background-color: #ffffff;
+.landing-page, .form-container, .dashboard {
   padding: 20px;
+  margin: 20px;
   border-radius: 10px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* background-color: #f9f9f9; Change this to match your theme */
 }
 
-/* Input and Button Styling */
-input,
-button {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 12px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+.otp-verification {
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid #007bff; /* Highlighting OTP verification */
+  border-radius: 10px;
+  background-color: #e7f1ff; /* Light background color */
 }
 
-button {
-  background-color: #4CAF50;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s;
+.unauthorized-message {
+  text-align: center;
+  font-size: 1.5rem;
+  color: red; /* Color for unauthorized message */
 }
 
-button:hover {
-  background-color: #45a049;
-}
+@media (max-width: 768px) {
+  .app-container {
+      padding: 10px;
+  }
 
-/* Link button for switching between forms */
-.link-button {
-  background: none;
-  color: #007bff;
-  cursor: pointer;
-  border: none;
-  text-decoration: underline;
-  font-size: 14px;
-}
+  .landing-page, .form-container, .dashboard {
+      margin: 10px;
+      padding: 15px;
+  }
 
-.link-button:hover {
-  text-decoration: none;
+  .unauthorized-message {
+      font-size: 1.2rem;
+  }
 }

@@ -1,0 +1,62 @@
+.outerbox{
+    background: linear-gradient(135deg, #27282a 0%, #81788a 100%);
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  .outerboxpaddingtop{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    padding-bottom: 100px;
+  }
+  .outerboxpaddingbot{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    padding-top: 60px;
+  }
+.about-container {
+    /* padding: 2rem; */
+    text-align: center;
+    /* background-color: #f9f9f9; */
+  }
+  
+  .about-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #f4f3f3;
+  }
+  
+  .student-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  
+  .student-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    width: 250px;
+  }
+  
+  .student-image {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1rem;
+  }
+  
+  .student-name {
+    font-size: 1.5rem;
+    color: #1a202c;
+  }
+  
+  .student-bio {
+    font-size: 1rem;
+    color: #4a5568;
+  }
+  

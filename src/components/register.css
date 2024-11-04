@@ -1,62 +1,144 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f9f9f9;
-  }
-  
-  .card {
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .error {
-    color: red;
-    margin-bottom: 10px;
-    text-align: center;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .form-group input[type="text"],
-  .form-group input[type="email"],
-  .form-group input[type="tel"],
-  .form-group input[type="password"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
+.outerbox{
+  background: linear-gradient(135deg, #27282a 0%, #81788a 100%);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.outerboxpaddingtop{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  padding-bottom: 100px;
+}
+.outerboxpaddingbot{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  padding-top: 60px;
+}
+.register-container {
+    
+  max-width: 400px;
+  margin: 2rem auto;
+  /* margin-top: 100px; */
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h4 {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.brand-name {
+  color: #667eea; /* Use the primary color for the brand */
+}
+
+p {
+  text-align: center;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.floating-label {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.5rem 0rem 0.5rem 0rem; /* Add space for the icon */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: #333;
+  transition: border-color 0.3s;
+}
+
+.input-field:focus {
+  border-color: #667eea; /* Change border color on focus */
+  outline: none;
+}
+
+.input-label {
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-size: 0.9rem;
+  color: #aaa;
+  transition: all 0.2s ease;
+}
+
+.input-field:focus + .input-label,
+.input-field:not(:placeholder-shown) + .input-label {
+  top: -1rem;
+  left: 1rem;
+  font-size: 0.75rem;
+  color: #667eea; /* Change label color on focus */
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 0.5rem;
+  transform: translateY(-50%);
+}
+
+.input-svg {
+  width: 20px;
+  height: 20px;
+  fill: #aaa; /* Default color for SVG icons */
+}
+
+.input-field:focus ~ .input-icon .input-svg,
+.input-field:not(:placeholder-shown) ~ .input-icon .input-svg {
+  fill: #667eea; /* Change icon color on focus */
+}
+
+.submit-button2,
+.login-button2,
+.forgot-password-button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button2 {
+  background-color: #27282a;
+    color: #f9f9f9; /* Primary color */ /* Primary color */
+}
+
+.submit-button:hover {
+  background-color: #5a6db8; /* Darker shade on hover */
+}
+
+.login-button2 {
+  background-color: #27282a;
+  color: #f9f9f9; /* Primary color */ /* Primary color for text */
+  border: 1px solid #667eea; /* Border color matching the theme */
+  margin-top: 0.5rem;
+}
+
+.register-button:hover {
+  background-color: #667eea;
+  color: white;
+}
+
+.forgot-password-button {
+  background-color: #27282a;
+  color: #f9f9f9; /* Primary color */ /* Primary color for text */
+  border: none;
+  margin-top: 0.5rem;
+}
+
+.forgot-password-button:hover {
+  text-decoration: underline;
+}

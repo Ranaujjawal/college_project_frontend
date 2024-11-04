@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import './register.css'
+import { useNavigate } from 'react-router-dom';
 // Registration Form Component
+import Footer from './footer.js'
+import Navbar from './navbar.js';
 const RegistrationForm = ({ onSubmit }) => {
-   
+   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -36,130 +39,157 @@ const RegistrationForm = ({ onSubmit }) => {
 
     onSubmit(formData);
   };
+  const handleLoginclick = () =>
+  {
+    navigate('/login');
+  }
 
   return (
-    <div className="container">
-      <div className="card">
-        <h2>Register</h2>
+    <>
+    <Navbar/>
+    <div className='outerbox'>
+    <div className='outerboxpaddingtop'></div>
+    <div className="register-container">
+  <form onSubmit={handleSubmit} className="register-form">
+    <h2>Register</h2>
 
-        {error && <div className="error">{error}</div>}
+    {error && <div className="error">{error}</div>}
 
-        <form onSubmit={handleSubmit} className="form">
-          <div className="form-group">
-            <label htmlFor="fullName">Name</label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="John Doe"
-            />
-          </div>
+    <div className="floating-label">
+      <input
+        id="name"
+        name="name"
+        type="text"
+        value={formData.name}
+        onChange={handleChange}
+        placeholder=" "
+        className="input-field"
+      />
+      <label htmlFor="name" className="input-label">Name</label>
+    </div>
 
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="john@example.com"
-            />
-          </div>
+    <div className="floating-label">
+      <input
+        id="email"
+        name="email"
+        type="email"
+        value={formData.email}
+        onChange={handleChange}
+        placeholder=" "
+        className="input-field"
+      />
+      <label htmlFor="email" className="input-label">Email</label>
+    </div>
 
-          <div className="form-group">
-            <label htmlFor="phone">Location</label>
-            <input
-              id="location"
-              name="location"
-              type="text"
-              value={formData.location}
-              onChange={handleChange}
-              placeholder="Home"
-            />
-          </div>
+    <div className="floating-label">
+      <input
+        id="location"
+        name="location"
+        type="text"
+        value={formData.location}
+        onChange={handleChange}
+        placeholder=" "
+        className="input-field"
+      />
+      <label htmlFor="location" className="input-label">Location</label>
+    </div>
 
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              value={formData.password}
-              onChange={handleChange}
-            />
-          </div>
+    <div className="floating-label">
+      <input
+        id="password"
+        name="password"
+        type="password"
+        value={formData.password}
+        onChange={handleChange}
+        placeholder=" "
+        className="input-field"
+      />
+      <label htmlFor="password" className="input-label">Password</label>
+    </div>
 
-          <div className="form-group">
-          <label htmlFor="role">Role</label>
-          <select
-            id="role"
-            name="role"
-            value={formData.role}
-            onChange={handleChange}
-          >
-            <option value="">Select a role</option>
-            <option value="customer">customer</option>
-            <option value="worker">Worker</option>
-          </select>
-        </div>
-         
-          <div className="form-group">
-          <label htmlFor="profession">Profession</label>
-          <select
-            id="profession"
-            name="profession"
-            value={formData.profession}
-            onChange={handleChange}
-          >
-            <option value="">Select a profession</option>
-            <option value="none">none</option>
-            <option value="plumber">plumber</option>
-            <option value="electrician">electrician</option>
-            <option value="carpenter">carpenter</option>
-            <option value="painter">painter</option>
-            <option value="cleaner">cleaner</option>
-            <option value="gardner">gardner</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div className="form-group">
-            <label htmlFor="hourlyRate">hourlyRate</label>
-            <input
-              id="hourlyRate"
-              name="hourlyRate"
-              type="text"
-              value={formData.hourlyRate}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="file">Upload avatar</label>
-            <div>
-              <input
-                id="avatar"
-                name="avatar"
-                type="file"
-                onChange={handleChange}
-                style={{ display: 'none' }}
-              />
-              <button
-                type="button"
-                onClick={() => document.getElementById('avatar').click()}
-                
-              >
-                {formData.avatar ? formData.avatar.name : 'Choose File'}
-              </button>
-            </div>
-          </div>
+    <div className="floating-label">
+      <select
+        id="role"
+        name="role"
+        value={formData.role}
+        onChange={handleChange}
+        className="input-field"
+      >
+        <option value="" disabled>Select a role</option>
+        <option value="customer">Customer</option>
+        <option value="worker">Worker</option>
+      </select>
+      <label htmlFor="role" className="input-label"></label>
+    </div>
 
-          <button type="submit">Register</button>
-        </form>
+    <div className="floating-label">
+      <select
+        id="profession"
+        name="profession"
+        value={formData.profession}
+        onChange={handleChange}
+        className="input-field"
+      >
+        <option value="" disabled>Select a profession</option>
+        <option value="none">None</option>
+        <option value="plumber">Plumber</option>
+        <option value="electrician">Electrician</option>
+        <option value="carpenter">Carpenter</option>
+        <option value="painter">Painter</option>
+        <option value="cleaner">Cleaner</option>
+        <option value="gardener">Gardener</option>
+        <option value="other">Other</option>
+      </select>
+      <label htmlFor="profession" className="input-label"></label>
+    </div>
+
+    <div className="floating-label">
+      <input
+        id="hourlyRate"
+        name="hourlyRate"
+        type="text"
+        value={formData.hourlyRate}
+        onChange={handleChange}
+        placeholder=" "
+        className="input-field"
+      />
+      <label htmlFor="hourlyRate" className="input-label">Hourly Rate</label>
+    </div>
+
+    <div className="file-upload floating-label">
+      <label htmlFor="avatar" className="input-label"></label>
+      <div>
+        <input
+          id="avatar"
+          name="avatar"
+          type="file"
+          onChange={handleChange}
+          style={{ display: 'none' }}
+        />
+        <button
+          type="button"
+          onClick={() => document.getElementById('avatar').click()}
+          className="input-field"
+        >
+          {formData.avatar ? formData.avatar.name : 'Choose File'}
+        </button>
       </div>
     </div>
+
+    <button type="submit" className="submit-button2">Register</button>
+
+    <div className="login-section">
+      <p className="login-text">Already a user?</p>
+      <button type="button" className="login-button2" onClick={handleLoginclick}>Login</button>
+    </div>
+  </form>
+</div>
+<div className='outerboxpaddingbot'></div>
+</div>
+<Footer/>
+</>
   );
+  
 };
 
 export default RegistrationForm;
