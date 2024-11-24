@@ -257,7 +257,7 @@ const RegistrationForm = ({ onSubmit }) => {
         <label htmlFor="location" className="input-label">
         </label>
         <Autocomplete
-          apiKey="AIzaSyC6VYEnz1UFeEkPDPNi8p_XHFuipQLnCN0" // Secure your API key
+          apiKey="" // Secure your API key
            onPlaceSelected={handlePlaceSelected}
           value={temp}
           onChange={handlelChange}
