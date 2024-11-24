@@ -7,8 +7,7 @@ import axios from 'axios';
 import './Dashboard.css'; // Add CSS for the layout
 import Filter from './filter.js'
 const Dashboard = () => {
-  axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
-  axios.defaults.withCredentials = true;
+  
   const navigate = useNavigate();
   const [initialRender, setInitialRender] = useState(true);
 
@@ -18,6 +17,8 @@ const Dashboard = () => {
       setInitialRender(false); // Prevent subsequent navigation
     }
   }, [initialRender, navigate]);
+  axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
+  axios.defaults.withCredentials = true;
   const handleLogout = async() => {
     try {
       const response = await axios.post('/auth/logout')
@@ -30,10 +31,6 @@ const Dashboard = () => {
     } catch (error) {
       console.log('Error during Logout:', error);
     }
-  };
-
-  const handleRegister = () => {
-    navigate('/fregister');
   };
 
       const toggleNav = () => {
