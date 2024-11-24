@@ -16,8 +16,9 @@
   
   .nav-links {
     display: flex;
-    flex-direction: column;
-    width: 100%;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
   }
   
   .nav-item {

@@ -1,7 +1,178 @@
 .user-cards-container {
-    display: flex;
-    flex-wrap: wrap; /* Allows cards to wrap on smaller screens */
-    gap: 16px; /* Space between cards */
-    justify-content: center; /* Center cards */
+  display: flex;
+  flex-direction: row; /* Cards will be displayed horizontally */
+  flex-wrap: wrap; /* Allows cards to wrap on smaller screens */
+  gap: 16px; /* Space between cards */
+  justify-content: center; 
+}
+  /* Top Page Container */
+.toppage {
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+/* Title Styles */
+.titlehelp {
+  font-size: 2rem;
+  color: #2d3748;
+  margin: 0 0 24px 0;
+  font-weight: 600;
+  text-align: center;
+  /* position: relative; */
+}
+
+.titlehelp::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #4263eb;
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+/* Filter Alignment */
+.alignfilter {
+  margin: 24px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+/* Applied Filters Section */
+.appliedfilterhead {
+  font-size: 1.25rem;
+  color: #4a5568;
+  margin: 24px 0 16px 0;
+  font-weight: 500;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 8px;
+}
+
+/* Filter Container Styles (for the inline styles converted to classes) */
+.filter-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  margin-top: 16px;
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.filter-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filter-label {
+  font-weight: 600;
+  color: #64748b;
+  margin-right: 8px;
+  min-width: 80px;
+}
+
+.filter-value {
+  color: #334155;
+  background-color: #f1f5f9;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+/* Animation for filter items */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.filter-item {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .toppage {
+    padding: 16px;
+    margin: 16px;
+  }
+
+  .titlehelp {
+    font-size: 1.75rem;
+  }
+
+  .filter-container {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-item {
+    padding: 10px 12px;
+  }
+
+  .appliedfilterhead {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .toppage {
+    padding: 12px;
+    margin: 12px;
+  }
+
+  .titlehelp {
+    font-size: 1.5rem;
+  }
+
+  .filter-label {
+    min-width: 70px;
+    font-size: 0.9rem;
+  }
+
+  .filter-value {
+    font-size: 0.9rem;
+    padding: 3px 8px;
+  }
+}
+
+/* Custom scrollbar for better UX */
+.filter-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.filter-container::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.filter-container::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.filter-container::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

@@ -3,6 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from './footer.js'
 import Navbar from './navbar.js';
+import Bot from './chatbot.js'
 const WelcomeComponent = () => {
     const navigate = useNavigate();
     const handlelogin = () =>
@@ -15,6 +16,7 @@ const WelcomeComponent = () => {
     }
     return (
         <>
+        <Bot/>
         <Navbar/>
          <div className="container1">
             <div className="content-box1">

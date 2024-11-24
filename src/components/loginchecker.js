@@ -4,7 +4,7 @@ import axios from "axios";
 export const UserContext = createContext({});
 
 export function UserContextProvider({children}) {
-    axios.defaults.baseURL = 'http://localhost:4040';
+    axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
   axios.defaults.withCredentials = true;
   const [email, setEmail] = useState(null);
   const [id, setId] = useState(null);

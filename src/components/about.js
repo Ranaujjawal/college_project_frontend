@@ -1,7 +1,8 @@
 import React from 'react';
 import './about.css';
 import Footer from './footer.js'
-import Navbar from './navbar.js';
+import Navbar from './fnavbar.js';
+import Bot from './chatbot.js'
 const AboutPage = () => {
   const students = [
     {
@@ -23,11 +24,14 @@ const AboutPage = () => {
 
   return (
     <>
+    <Bot/>
     <Navbar/>
+    
     <div className='outerbox'>
-    <div className='outerboxpaddingtop'></div>
+    {/* <div className='breaking'>bjkbjkb</div> */}
+    {/* <div className='outerboxpaddingtop'></div> */}
     <div className="about-container">
-      <h1 className="about-title">About the Group</h1>
+      <div className='titlebox'><h1 className="about-title">About the Group</h1></div>
       <div className="student-list">
         {students.map((student, index) => (
           <div key={index} className="student-card">

@@ -1,4 +1,6 @@
-
+.forgottitle{
+  color: black;
+}
 
 .body2 {
     min-height: 100vh;
@@ -6,7 +8,7 @@
     justify-content: center;
     align-items: center;
     
-    background: linear-gradient(135deg, #27282a 0%, #81788a 100%);
+  /* background-color: #e7f1ff; Light background color */
   }
 /* Container styling */
 .forgot-password-container {
@@ -21,7 +23,7 @@
 /* Header styling */
 .forgot-password-container h1 {
   font-size: 1.8rem;
-  color: #333;
+  color: #000000;
   margin-bottom: 1.5rem;
   text-align: center;
 }
@@ -32,32 +34,35 @@
 }
 
 /* Label styling */
-.form-group label {
+.form-group1 label {
   display: block;
   margin-bottom: 0.5rem;
-  color: #555;
+  color:black;
+  font-size: 15px;
 }
 
 /* Input field styling */
-.form-group input[type="email"] {
+.form-group1 input[type="email"] {
   width: 100%;
   padding: 0.75rem 0 0.75rem 0;
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 1rem;
   transition: border-color 0.3s ease;
+  margin-bottom: 10px;
 }
 
-.form-group input[type="email"]:focus {
+.form-group1 input[type="email"]:focus {
   outline: none;
   border-color: #667eea;
+  margin-bottom: 10px;
 }
 
 /* Button styling */
-button {
+.forgotbtn {
   width: 100%;
   padding: 0.75rem;
-  background-color: #667eea;
+  background-color: #000000;
   color: white;
   border: none;
   border-radius: 5px;

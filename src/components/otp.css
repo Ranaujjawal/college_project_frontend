@@ -1,5 +1,6 @@
 /* Container styling */
 .container3 {
+  margin-top: 40px;
   max-width: 400px;
   margin: 2rem auto;
   padding: 2rem;
@@ -27,7 +28,6 @@
 /* Form group styling */
 .form-group3 {
   margin-bottom: 1.5rem;
-  position: relative;
 }
 
 /* OTP input field */
@@ -40,6 +40,7 @@
   color: #333;
   transition: border-color 0.3s;
   background-color: white;
+  z-index: 0;
 }
 
 /* Focus state for OTP input */
@@ -49,18 +50,19 @@
 }
 
 /* Label styling */
-.form-group label {
+.form-group3 label {
   position: absolute;
-  top: -0.75rem;
-  left: 1rem;
-  font-size: 0.9rem;
-  color: #aaa;
+  margin-bottom: 10px;
+  top: -1rem;
+  /* left: 1rem; */
+  font-size: .9rem;
+  color: #000000;
   transition: all 0.2s ease;
   pointer-events: none;
 }
 
 /* Button styling */
-button {
+.otpbtn {
   width: 100%;
   padding: 0.75rem;
   border: none;
@@ -73,28 +75,28 @@ button {
 }
 
 /* Primary button styling */
-button[type="submit"] {
-  background-color: #667eea;
+.otpbtn[type="submit"] {
+  background-color: #000000;
 }
 
-button[type="submit"]:hover {
+.otpbtn[type="submit"]:hover {
   background-color: #5a6db8;
 }
 
 /* Secondary button styling (Resend OTP) */
-button[type="button"] {
+.otpbtn[type="button"] {
   background-color: transparent;
-  color: #667eea;
-  border: 1px solid #667eea;
+  color: #000000;
+  border: 1px solid #000000;
 }
 
-button[type="button"]:hover {
+.otpbtn[type="button"]:hover {
   background-color: #667eea;
   color: white;
 }
 
 /* Disabled button state */
-button:disabled {
+.otpbtn:disabled {
   background-color: #cccccc;
   color: #666666;
   cursor: not-allowed;

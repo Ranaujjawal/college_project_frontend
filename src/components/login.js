@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './login.css'
 import Footer from './footer.js'
 import Navbar from './navbar.js';
+import Bot from './chatbot.js'
+import AutocompleteSearchBar from "./googleautocompletesearch.js";
+import Autocomplete from "react-google-autocomplete";
 const LoginForm = ({ onSubmit }) => {
   const navigate = useNavigate(); // Initialize useNavigate
   const [loginData, setLoginData] = useState({
@@ -34,9 +37,22 @@ const LoginForm = ({ onSubmit }) => {
   const handleForgotPassword = () => {
     navigate('/forgotpassword'); // Navigate to the forgot password route
   };
-
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    location: {
+      description: '',
+      coordinates: [], // [longitude, latitude]
+    },
+    role: '',
+    profession: '',
+    hourlyRate: '',
+    avatar: null
+  });
   return (
     <>
+    <Bot/>
     <Navbar/>
     <div className='outerbox'>
     <div className='outerboxpaddingtop'></div>
@@ -45,6 +61,16 @@ const LoginForm = ({ onSubmit }) => {
             <h4>We are <span className="brand-name">NUVA</span></h4>
             <p>Welcome back! Log in to your account to view today's clients:</p>
 
+           
+            <div className="form-group">
+        <label htmlFor="location">Location</label>
+        <Autocomplete
+  apiKey=""
+  onPlaceSelected={(place) => {
+   // console.log(place);
+  }}
+/>
+      </div>
             <div className="floating-label">
                 <input
                     id="email"

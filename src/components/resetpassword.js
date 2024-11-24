@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './resetpassword.css';
-
+import Navbar from './fnavbar';
+import Footer from './footer';
 const EnterNewPassword = ({onSubmit}) => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -37,6 +38,8 @@ const EnterNewPassword = ({onSubmit}) => {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className='body12'>
     <div className="password-container">
       <h1>Enter New Password</h1>
@@ -66,10 +69,12 @@ const EnterNewPassword = ({onSubmit}) => {
           />
           {error && <div className="error-message">{error}</div>}
         </div>
-        <button type="submit">Update Password</button>
+        <button className='resettbtn' type="submit">Update Password</button>
       </form>
     </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

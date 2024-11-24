@@ -2,14 +2,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './Chat.css'
 // WebSocket URL (adjust if needed)
-const SOCKET_URL = 'ws://localhost:4040'; // replace with your backend WebSocket URL
+const SOCKET_URL = process.env.REACT_APP_SOCKET_URL//'ws://localhost:4040'; // replace with your backend WebSocket URL
 
 const Chats = () => {
-  axios.defaults.baseURL = 'http://localhost:4040';
+  axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
     axios.defaults.withCredentials = true;
   const [message, setMessage] = useState('');
   const [chats, setChats] = useState([]); // Chat history with a specific user
-  const [selectedUserId, setSelectedUserId] = useState(null); // Selected user for chat
+  const [selectedUserId, setSelectedUserId] = useState(null);
+  const [selectedUserName, setSelectedUserName] = useState(null); // Selected user for chat
   const [onlineUsers, setOnlineUsers] = useState([]); // Online users list
   const [file, setFile] = useState(null); // File to upload
   const socketRef = useRef(null); // Store WebSocket reference
@@ -18,7 +19,7 @@ const Chats = () => {
   const fetchChatHistory = async (userId) => {
     try {
       const response = await axios.post('/messages/chatuserhistory');
-      console.log(response.data); // API call to fetch chat history
+     // console.log(response.data); // API call to fetch chat history
       
       setOnlineUsers(response.data.chatUsers);
     } catch (error) {
@@ -27,10 +28,10 @@ const Chats = () => {
   };
   const fetchchathistoryofusers=async(userId)=>{
     try {
-      console.log("recipent id",userId);
+      //console.log("recipent id",userId);
       const response = await axios.post('/messages/getsmessages',{userId});
       setChats(response.data);
-      console.log(response.data);
+      //console.log(response.data);
     } catch (error) {
       
     }
@@ -42,7 +43,7 @@ const Chats = () => {
     socketRef.current = new WebSocket(SOCKET_URL);
 
     socketRef.current.onopen = () => {
-      console.log('WebSocket connected');
+     // console.log('WebSocket connected');
     };
 
     // Listen for messages from WebSocket server
@@ -55,7 +56,7 @@ const Chats = () => {
     };
 
     socketRef.current.onclose = () => {
-      console.log('WebSocket disconnected');
+      //console.log('WebSocket disconnected');
     };
 
     return () => {
@@ -94,23 +95,23 @@ const Chats = () => {
   };
 
   // When a user is clicked, load their chat history
-  const handleUserSelect = (userId) => {
+  const handleUserSelect = (userId,name) => {
     setSelectedUserId(userId);
     fetchChatHistory(userId);
-    fetchchathistoryofusers(userId); // Fetch chat history for the selected user
+    fetchchathistoryofusers(userId);
+    setSelectedUserName(name) // Fetch chat history for the selected user
   };
 
   return (
     <div className="chats-container">
-      <h2>Chats</h2>
 
       {/* Sidebar: Online users */}
-      <div className="sidebar">
-      <h3>Online Users</h3>
+      <div className="sidebarchat">
+      <h3 className='chat-historyh2'>Past Chats</h3>
       <ul>
         {Array.isArray(onlineUsers) && onlineUsers.length > 0 ? (
           onlineUsers.map((chatUser) => (
-            <button key={chatUser._id} onClick={() => handleUserSelect(chatUser._id)}>
+            <button className='chatbutton' key={chatUser._id} onClick={() => handleUserSelect(chatUser._id,chatUser.name)}>
               {chatUser.email ? chatUser.email : chatUser.name} {/* Display name or email */}
             </button>
           ))
@@ -125,6 +126,7 @@ const Chats = () => {
         {selectedUserId ? (
           <>
             <div className="chat-history">
+            <h3 className='chat-historyh2'>chatting with {selectedUserName}</h3>
               {chats.map((chat) => (
                 <div key={chat._id} className={chat.sender === selectedUserId ? 'incoming' : 'outgoing'}>
                   {chat.file ? (
@@ -150,12 +152,12 @@ const Chats = () => {
                 placeholder="Enter your message"
                 onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
               />
-              <input type="file" onChange={handleFileChange} />
+              {/* <input type="file" onChange={handleFileChange} /> */}
               <button onClick={sendMessage}>Send</button>
             </div>
           </>
         ) : (
-          <p>Select a user to start chatting</p>
+          <p className='chat-historyh2'>Select a user to start chatting</p>
         )}
       </div>
     </div>

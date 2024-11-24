@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import RegistrationForm from './components/register.js';
+import Register from './components/finalregister.js'
 import LoginForm from './components/login.js';
+import Login from './components/finallogin.js'
 import OTPVerification from './components/otp.js';
 import Dashboard from './components/dashboard.js';
 import Landing from './components/Landingpage.js'
@@ -12,13 +14,14 @@ import ForgotOtp from './components/forgototp.js'
 import Resetpassword from './components/resetpassword.js'
 import  Loader  from './components/Loader.js';
 import axios from 'axios';
+import Homepage from './components/homepage.js';
 // import './App.css'
 const App = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isloading, setIsloading] = useState(false);
   useEffect(() => {
-    axios.defaults.baseURL = 'http://localhost:4040';
+    axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
     axios.defaults.withCredentials = true;
     
     // Check if user is already logged in
@@ -29,10 +32,11 @@ const App = () => {
         if (response.data && response.data.userId) {
           setIsLoggedIn(true);
           setIsloading(false);
+          navigate('/dashboard')
         }
       } catch (error) {
         setIsloading(false);
-        console.log("User not logged in:", error);
+        //console.log("User not logged in:", error);
       }
     };
 
@@ -43,14 +47,29 @@ const App = () => {
     try {
       setIsloading(true);
       const form = new FormData();
+      //console.log(formData);
       Object.keys(formData).forEach((key) => {
-        form.append(key, formData[key]);
-      });
-
+        // if (key === "avatar" && formData[key] instanceof File) {
+        //   console.log(formData[key].name)
+        //   form.append(key, formData[key].name);
+        // } 
+        if (key === "location") {
+          // Append nested location object
+          form.append(`${key}[description]`, formData[key].description);
+          form.append(`${key}[coordinates][]`, formData[key].coordinates[0]); // Longitude
+          form.append(`${key}[coordinates][]`, formData[key].coordinates[1]); // Latitude
+        }else {
+          // Append other fields as strings
+          form.append(key, formData[key]);
+        }});
+        // for (let pair of form.entries()) {
+        //   console.log(`${pair[0]}:`, pair);
+        // }
+      //console.log(form.entries);
       const response = await axios.post('/auth/register', form, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-
+     
       if (response.data.success) {
         alert(' Please verify your OTP.');
         setIsloading(false);
@@ -61,7 +80,7 @@ const App = () => {
       }
     } catch (error) {
       setIsloading(false);
-      console.log('Error during registration:', error);
+      //console.log('Error during registration:', error);
       alert('User already exists or registration failed.');
     }
   };
@@ -74,12 +93,12 @@ const App = () => {
      if(response.data.success) 
       {
         setIsloading(false);
-        navigate('/login'); // Redirect to login page
+        navigate('/flogin'); // Redirect to login page
         
       }
       } catch (error) {
       setIsloading(false);
-      console.log('Error verifying OTP:', error);
+     // console.log('Error verifying OTP:', error);
       alert('Invalid OTP. Please try again.');
     }
   };
@@ -96,7 +115,7 @@ const App = () => {
       }
     } catch (error) {
       setIsloading(false);
-      console.log('Error resending OTP:', error);
+      //console.log('Error resending OTP:', error);
       alert('Failed to resend OTP. Please try again.');
     }
   };
@@ -110,7 +129,7 @@ const App = () => {
       navigate('/dashboard'); // Redirect to dashboard after successful login
     } catch (error) {
       setIsloading(false);
-      console.log('Login error:', error);
+      //console.log('Login error:', error);
       alert('Login failed. Please check your credentials.');
     }
   };
@@ -119,7 +138,7 @@ const App = () => {
   {
     setIsloading(true);
     try {
-      console.log(email);
+     // console.log(email);
      const response =  await axios.post('/auth/forgotPassword',{email});
      if(response.data.status)
      {
@@ -141,7 +160,7 @@ const App = () => {
   const handleForgotpasswordotp = async (otp) => {
     setIsloading(true);
     try {
-      console.log(otp);
+      //console.log(otp);
      const response= await axios.post('/auth/verifyforgototppassword', { otp });
      if(response.data.status)
       {
@@ -156,7 +175,7 @@ const App = () => {
      // Redirect to login page
     } catch (error) {
       setIsloading(false);
-      console.log('Error verifying OTP:', error);
+      //console.log('Error verifying OTP:', error);
       alert('Invalid OTP. Please try again.');
     }
   };
@@ -168,7 +187,7 @@ const App = () => {
       setIsloading(false);
     } catch (error) {
       setIsloading(false);
-      console.log('Error resending OTP:', error);
+      //console.log('Error resending OTP:', error);
       alert('Failed to resend OTP. Please try again.');
     }
   };
@@ -179,11 +198,11 @@ const App = () => {
       try {
        const response =  await axios.post('/auth/resetpassword',{newPassword});
        setIsloading(false);
-          navigate('/login');
+          navigate('/flogin');
      
       } catch (error) {
         setIsloading(false);
-        console.log('something went wrong', error);
+        //console.log('something went wrong', error);
         alert('User not Found');
       }
     };
@@ -199,15 +218,18 @@ const App = () => {
   return (
     <div className="app-container">
         <Routes>
-            <Route path="/" element={<Landing className="landing-page" />} />
+            {/* <Route path="/old" element={<Landing className="landing-page" />} /> */}
+            <Route path="/" element={<Homepage className="landing-page" />} />
             <Route path="/about" element={<AboutPage className="landing-page" />} />
             <Route path="/forgotpassword" element={<ForgotPassword className="landing-page" onSubmit={handleForgotpassword} />} />
             <Route path="/forgotpasswordotp" element={<ForgotOtp className="landing-page" onVerify={handleForgotpasswordotp} onResend={handleResendOTPforgot}/>} />
             <Route path="/resetpassword" element={<Resetpassword className="landing-page" onSubmit={handleresetpassword} />} />
             <Route path="/contact" element={<ContactPage className="landing-page" />} />
-            <Route path="/register" element={<RegistrationForm className="form-container" onSubmit={handleRegister} />} />
+            {/* <Route path="/register" element={<RegistrationForm className="form-container" onSubmit={handleRegister} />} /> */}
+            <Route path="/fregister" element={<Register className="form-container" onSubmit={handleRegister} />} />
             <Route path="/otp" element={<OTPVerification className="otp-verification" onVerify={handleVerifyOTP} onResend={handleResendOTP} />} />
-            <Route path="/login" element={<LoginForm className="form-container" onSubmit={handleLogin} />} />
+            {/* <Route path="/login" element={<LoginForm className="form-container" onSubmit={handleLogin} />} /> */}
+            <Route path="/flogin" element={<Login className="form-container" onSubmit={handleLogin} />} />
             {isLoggedIn && <Route path="/dashboard/*" element={<Dashboard className="dashboard" />} />}
             <Route path="*" element={<div className="unauthorized-message">You are not authorized to view this page.</div>} />
         </Routes>

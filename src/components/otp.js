@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import './otp.css'
 import axios from 'axios';
+import Footer from './footer';
+import Navbar from './fnavbar';
 // OTP Verification Component
 const OTPVerification = ({ onVerify, onResend }) => {
-    axios.defaults.baseURL = 'http://localhost:4040';
+    axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
     axios.defaults.withCredentials = true;
   const [otp, setOtp] = useState('');
   const [error, setError] = useState('');
@@ -39,11 +41,11 @@ const OTPVerification = ({ onVerify, onResend }) => {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className="container3">
       <div className="card3">
         <h2>Verify OTP</h2>
-
-        {error && <div className="error">{error}</div>}
 
         <form onSubmit={handleSubmit} className="form">
           <div className="form-group3">
@@ -59,16 +61,18 @@ const OTPVerification = ({ onVerify, onResend }) => {
             />
           </div>
 
-          <button type="submit" disabled={loading}>
+          <button type="submit" className='otpbtn' disabled={loading}>
             Verify OTP
           </button>
 
-          <button type="button" onClick={handleResend} disabled={loading}>
+          <button type="button"  className='otpbtn'onClick={handleResend} disabled={loading}>
             Resend OTP
           </button>
         </form>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

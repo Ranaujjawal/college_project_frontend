@@ -1,0 +1,243 @@
+/* Base container styles */
+
+  
+  .w-full {
+    width: 100%;
+  }
+  
+  .max-w-md {
+    max-width: 28rem;
+  }
+  
+  .mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Button styles */
+  .flex {
+    display: flex;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .justify-center {
+    justify-content: center;
+  }
+  
+  .justify-between {
+    justify-content: space-between;
+  }
+  
+  .p-2 {
+    padding: 0.5rem;
+  }
+  
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .mr-2 {
+    margin-right: 0.5rem;
+  }
+  
+  .mt-2 {
+    margin-top: 0.5rem;
+  }
+  
+  .mt-4 {
+    margin-top: 1rem;
+  }
+  
+  .bg-blue-500 {
+    background-color: #3b82f6;
+  }
+  
+  .bg-blue-600 {
+    background-color: #2563eb;
+  }
+  
+  .bg-gray-200 {
+    background-color: #e5e7eb;
+  }
+  
+  .bg-gray-300 {
+    background-color: #d1d5db;
+  }
+  
+  .bg-white {
+    background-color: white;
+  }
+  
+  .text-white {
+    color: white;
+  }
+  
+  .text-gray-700 {
+    color: #374151;
+  }
+  
+  .text-gray-800 {
+    color: #1f2937;
+  }
+  
+  .rounded-md {
+    border-radius: 0.375rem;
+  }
+  
+  .transition {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  /* Form styles */
+  .absolute {
+    position: absolute;
+    max-width: fit-content;
+  }
+  
+  .z-10 {
+    z-index: 10;
+  }
+  
+  .shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+                0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .border {
+    border: 1px solid #e5e7eb;
+  }
+  
+  .p-4 {
+    padding: 1rem;
+  }
+  
+  /* Grid layout */
+  .grid {
+    display: grid;
+  }
+  
+  .grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  
+  .gap-4 {
+    gap: 1rem;
+  }
+  
+  /* Form group styles */
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .block {
+    display: block;
+  }
+  
+  .text-sm {
+    font-size: 0.875rem;
+  }
+  
+  .font-medium {
+    font-weight: 500;
+  }
+  
+  /* Form input styles */
+  .form-input,
+  input[type="number"],
+  select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    transition: border-color 0.15s ease-in-out;
+    outline: none;
+  }
+  
+  .form-input:focus,
+  input[type="number"]:focus,
+  select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  
+  /* Hover effects */
+  button:hover.bg-blue-500 {
+    background-color: #2563eb;
+  }
+  
+  button:hover.bg-gray-200 {
+    background-color: #d1d5db;
+  }
+  
+  /* Media queries for responsiveness */
+  @media (min-width: 768px) {
+    .md\:grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .flex {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  
+  /* Custom scrollbar for better aesthetics */
+  .form-input::-webkit-scrollbar,
+  select::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .form-input::-webkit-scrollbar-track,
+  select::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  .form-input::-webkit-scrollbar-thumb,
+  select::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+  
+  /* Focus styles for accessibility */
+  /* button:focus,
+  input:focus,
+  select:focus {
+    outline: none;
+    ring: 2px;
+    ring-offset: 2px;
+    ring-blue-500;
+  }
+   */
+  /* Disabled state styles */
+  button:disabled,
+  input:disabled,
+  select:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  /* Animation for form appearance */
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  form {
+    animation: slideDown 0.2s ease-out;
+  }

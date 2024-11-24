@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 const Profile = () => {
   const navigate = useNavigate();
-  axios.defaults.baseURL = 'http://localhost:4040';
+  axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
   axios.defaults.withCredentials = true;
 
   const handleLogout = async () => {

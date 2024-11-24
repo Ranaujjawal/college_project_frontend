@@ -2,20 +2,33 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import UserCard from './usercard'; // Import the UserCard component
 import { useNavigate  } from 'react-router-dom';
+import Filter from './filter.js'
+import './helper.css'
 const Helper = () => {
-  axios.defaults.baseURL = 'http://localhost:4040';
+  axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
   axios.defaults.withCredentials = true;
  const navigate = useNavigate ();
   const [workers, setWorkers] = useState([]); // State to hold workers data
   const [loading, setLoading] = useState(true); // State to track loading status
   const [error, setError] = useState(null); // State to handle errors
-  const [searchTerm, setSearchTerm] = useState(''); // State to track search input
-
+  const [appliedfilter, setAppliedfilter] = useState(''); // State to track search input
+  const [filters, setFilters] = useState({
+    location: {
+        description: '',
+        coordinates: [], // [longitude, latitude]
+      },
+  minRating: '',
+  maxPrice: '',
+  profession: '',
+  radius: '',
+  sortBy: '',
+  });
   // Fetch workers based on the search query
   const fetchWorkers = async (queryParams = {}) => {
     try {
-      const response = await axios.post('/auth/workers', queryParams); // Pass query params
+      const response = await axios.post('/auth/workers', {params:filters}); // Pass query params
       const workerdata = response.data.workers;
+      //console.log(workerdata)
       setWorkers(workerdata); // Set the fetched workers data
       setLoading(false); // Set loading to false after data is fetched
     } catch (error) {
@@ -24,15 +37,13 @@ const Helper = () => {
       setLoading(false); // Set loading to false in case of error
     }
   };
-
+  
   // Handle input change in the search bar
-  const handleSearchChange = (e) => {
-    const searchValue = e.target.value;
-    setSearchTerm(searchValue); // Update the search term state
-
-    // Fetch workers with the search term (querying by name or profession)
-    const queryParams = { profession: searchValue };
-    fetchWorkers(queryParams);
+  const handleSearchChange = (FilteredData,appliedFilterss) => {
+     
+     setAppliedfilter(appliedFilterss);
+   // console.log(FilteredData)
+    setWorkers(FilteredData);
   };
 
   // Fetch workers when the component mounts (initial load)
@@ -51,20 +62,82 @@ const Helper = () => {
 
   // Show error message if there's any error
   if (error) return <div>{error}</div>;
+  const filterContainerStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '8px',
+    marginTop: '10px',
+  };
 
+  const filterItemStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    fontSize: '14px',
+    padding: '4px 8px',
+    backgroundColor: '#f0f0f0',
+    borderRadius: '4px',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  };
+
+  const labelStyle = {
+    fontWeight: 'bold',
+    marginRight: '4px',
+  };
+
+  const valueStyle = {
+    color: '#555',
+  };
   return (
     <div className="helper-container">
-      <h2>Helper</h2>
-      <p>Find helpers or assistants here.</p>
-
-      {/* Search bar */}
-      <input
-        type="text"
-        placeholder="Search by profession"
-        value={searchTerm} // Bind the input field to the searchTerm state
-        onChange={handleSearchChange} // Fetch workers on input change
-        className="search-bar"
-      />
+      <div className='toppage'>
+      <h2 className='titlehelp'>Helper</h2>
+      <Filter className='alignfilter' onSubmit={handleSearchChange}/>
+      <div>
+      <h2 className='appliedfilterhead'>Applied Filters</h2>
+      {appliedfilter ? (
+        <div style={filterContainerStyle}>
+          {appliedfilter.location && appliedfilter.location.description && (
+            <div style={filterItemStyle}>
+              <span style={labelStyle}>Location:</span>
+              <span style={valueStyle}>{appliedfilter.location.description}</span>
+            </div>
+          )}
+          {appliedfilter.minRating && (
+            <div style={filterItemStyle}>
+              <span style={labelStyle}>Rating:</span>
+              <span style={valueStyle}>{appliedfilter.minRating}</span>
+            </div>
+          )}
+          {appliedfilter.maxPrice && (
+            <div style={filterItemStyle}>
+              <span style={labelStyle}>Price:</span>
+              <span style={valueStyle}>{appliedfilter.maxPrice}</span>
+            </div>
+          )}
+          {appliedfilter.profession && (
+            <div style={filterItemStyle}>
+              <span style={labelStyle}>Profession:</span>
+              <span style={valueStyle}>{appliedfilter.profession}</span>
+            </div>
+          )}
+          {appliedfilter.radius && (
+            <div style={filterItemStyle}>
+              <span style={labelStyle}>Radius:</span>
+              <span style={valueStyle}>{appliedfilter.radius} km</span>
+            </div>
+          )}
+          {appliedfilter.sortBy && (
+            <div style={filterItemStyle}>
+              <span style={labelStyle}>Sort By:</span>
+              <span style={valueStyle}>{appliedfilter.sortBy}</span>
+            </div>
+          )}
+        </div>
+      ) : (
+        <p >No filters applied.</p>
+      )}
+    </div>
+    </div>
 
       {/* Workers listing */}
       <div className="user-cards-container">
@@ -78,6 +151,8 @@ const Helper = () => {
                 name: worker.name,
                 profession: worker.profession,
                 hourlyRate: worker.hourlyRate,
+                rating:worker.rating,
+                totalrating:worker.totalRatings
               }}
               onStartChat={handleStartChat}
             />
