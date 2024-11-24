@@ -17,7 +17,7 @@ const Profile = () => {
           alert('logout sccessfull');
           navigate('/'); // Redirect to OTP verification
         } else {
-          alert(response.data.message || 'Something went wrong.');
+          alert( 'Something went wrong.');
         }
       } catch (error) {
         // console.log('Error during registration:', error);

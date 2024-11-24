@@ -7,6 +7,8 @@ import axios from 'axios';
 import './Dashboard.css'; // Add CSS for the layout
 import Filter from './filter.js'
 const Dashboard = () => {
+  axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
+  axios.defaults.withCredentials = true;
   const navigate = useNavigate();
   const [initialRender, setInitialRender] = useState(true);
 
@@ -23,7 +25,7 @@ const Dashboard = () => {
         alert('logout sccessfull');
         navigate('/');
       } else {
-        alert(response.data.message || 'Something went wrong.');
+        alert( 'Something went wrong.');
       }
     } catch (error) {
       console.log('Error during Logout:', error);
