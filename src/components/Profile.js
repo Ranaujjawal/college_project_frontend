@@ -20,7 +20,7 @@ const Profile = () => {
           alert(response.data.message || 'Something went wrong.');
         }
       } catch (error) {
-        console.log('Error during registration:', error);
+        // console.log('Error during registration:', error);
         alert('User already exists or registration failed.');
       }
      // Redirect to login after logging out
