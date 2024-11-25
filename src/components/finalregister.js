@@ -76,7 +76,7 @@ const Registration = ({ onSubmit }) => {
        setFormData( (formData)=>( { ...formData, location: { description: place.formatted_address, coordinates: [lng, lat], }, }));
       // console.log(formData.location.coordinates);
     } else {
-      console.error("Place does not have geometry information.11");
+      console.error("Place does not have geometry information.");
     }
   };
   return (
