@@ -43,7 +43,7 @@ const Chats = () => {
     socketRef.current = new WebSocket(SOCKET_URL);
 
     socketRef.current.onopen = () => {
-     // console.log('WebSocket connected');
+      console.log('WebSocket connected');
     };
 
     // Listen for messages from WebSocket server

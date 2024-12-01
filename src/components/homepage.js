@@ -30,7 +30,8 @@ const Homepage = () => {
     };
     return (
         <>
-        <div>
+        
+        <div className='body1'>
             {/* <nav>
                 <div id="nav-container" className="nav-container">
                     <a href="/" className="logo">Near.in</a>
@@ -213,8 +214,9 @@ const Homepage = () => {
       </div>
                 </div>
             </div>
+            <Footer/>
         </div>
-        <Footer/>
+        
         </>
     );
 };

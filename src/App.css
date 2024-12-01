@@ -1,4 +1,4 @@
-body{
+/* body{
   margin: 0;
 }
 .app-container {
@@ -12,21 +12,21 @@ body{
   margin: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* background-color: #f9f9f9; Change this to match your theme */
+  
 }
 
 .otp-verification {
   padding: 20px;
   margin: 20px;
-  border: 1px solid #007bff; /* Highlighting OTP verification */
+  border: 1px solid #007bff; 
   border-radius: 10px;
-  background-color: #e7f1ff; /* Light background color */
+  background-color: #e7f1ff; 
 }
 
 .unauthorized-message {
   text-align: center;
   font-size: 1.5rem;
-  color: red; /* Color for unauthorized message */
+  color: red; 
 }
 
 @media (max-width: 768px) {
@@ -42,4 +42,4 @@ body{
   .unauthorized-message {
       font-size: 1.2rem;
   }
-}
+} */
