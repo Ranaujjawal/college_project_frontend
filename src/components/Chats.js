@@ -196,6 +196,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './Chat.css';
 
+import I1 from './images/I9.jpg'
 // WebSocket URL (adjust if needed)
 const SOCKET_URL = process.env.REACT_APP_SOCKET_URL; // Example: 'ws://localhost:4040';
 
@@ -305,8 +306,12 @@ const Chats = () => {
                 <div id="friends">
                   <div className="friend">
                     <img
-                      src={chatUser.avatar}//"https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg"
-                      alt="User"
+                      src={
+                        chatUser.avatar && chatUser.avatar.trim() && chatUser.avatar !== "default-avatar.png" 
+                          ? chatUser.avatar 
+                          : I1
+                      } 
+                      alt="User Avatar" 
                     />
                     <p className="friend-data">
                       <strong className="friend-overflow">{chatUser.email || chatUser.name}</strong>

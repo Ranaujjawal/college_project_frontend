@@ -79,7 +79,7 @@ const UserCard = ({ user, onStartChat }) => {
     }
    // console.log(avurl);
   },[])
-  axios.defaults.baseURL = 'http://localhost:4040';
+  axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
   axios.defaults.withCredentials = true;
 
   const navigate = useNavigate();
