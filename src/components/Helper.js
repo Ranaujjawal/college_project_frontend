@@ -4,6 +4,8 @@ import UserCard from './usercard'; // Import the UserCard component
 import { useNavigate  } from 'react-router-dom';
 import Filter from './filter.js'
 import './helper.css'
+import I14 from './images/I14.webp'
+import { WrapText } from 'lucide-react';
 const Helper = () => {
   axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
   axios.defaults.withCredentials = true;
@@ -28,7 +30,7 @@ const Helper = () => {
     try {
       const response = await axios.post('/auth/workers', {params:filters}); // Pass query params
       const workerdata = response.data.workers;
-      //console.log(workerdata)
+     // console.log(workerdata)
       setWorkers(workerdata); // Set the fetched workers data
       setLoading(false); // Set loading to false after data is fetched
     } catch (error) {
@@ -38,6 +40,9 @@ const Helper = () => {
     }
   };
   
+  function capitalizationFirstLetter(text){
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  }
   // Handle input change in the search bar
   const handleSearchChange = (FilteredData,appliedFilterss) => {
      
@@ -64,15 +69,17 @@ const Helper = () => {
   if (error) return <div>{error}</div>;
   const filterContainerStyle = {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     gap: '8px',
+    flexWrap: 'wrap',
     marginTop: '10px',
+    marginBottom: '10px',
   };
 
   const filterItemStyle = {
     display: 'flex',
     alignItems: 'center',
-    fontSize: '14px',
+    fontSize: 'medium',
     padding: '4px 8px',
     backgroundColor: '#f0f0f0',
     borderRadius: '4px',
@@ -84,15 +91,35 @@ const Helper = () => {
     marginRight: '4px',
   };
 
+  const abc = {
+         display: 'flex' ,
+         flexDirection: 'row',
+  }
+
   const valueStyle = {
     color: '#555',
   };
   return (
     <div className="helper-container">
-      <div className='toppage'>
-      <h2 className='titlehelp'>Helper</h2>
-      <Filter className='alignfilter' onSubmit={handleSearchChange}/>
-      <div>
+       
+       <div className="hero-banner">
+                <div className="slogan">
+                    <p className="slogan1">Get the Best Services & Unmatched Experience!</p>
+                    <hr />
+                    <p className="slogan2">Connecting You to Reliable Services, Wherever and Whenever You Need Them!</p>
+                    <Filter className='alignfilter' onSubmit={handleSearchChange}/>
+                </div>
+                <div>
+                    <img
+                        className="hero-banner-image"
+                        src={I14}
+                        alt="Hero Banner"
+                    />
+                </div>
+              
+            </div>
+
+      <div className='AppliedFiltercontainer'>
       <h2 className='appliedfilterhead'>Applied Filters</h2>
       {appliedfilter ? (
         <div style={filterContainerStyle}>
@@ -105,7 +132,7 @@ const Helper = () => {
           {appliedfilter.minRating && (
             <div style={filterItemStyle}>
               <span style={labelStyle}>Rating:</span>
-              <span style={valueStyle}>{appliedfilter.minRating}</span>
+              <span style={valueStyle}>{capitalizationFirstLetter(appliedfilter.minRating)}</span>
             </div>
           )}
           {appliedfilter.maxPrice && (
@@ -117,7 +144,7 @@ const Helper = () => {
           {appliedfilter.profession && (
             <div style={filterItemStyle}>
               <span style={labelStyle}>Profession:</span>
-              <span style={valueStyle}>{appliedfilter.profession}</span>
+              <span style={valueStyle}>{capitalizationFirstLetter(appliedfilter.profession)}</span>
             </div>
           )}
           {appliedfilter.radius && (
@@ -129,7 +156,7 @@ const Helper = () => {
           {appliedfilter.sortBy && (
             <div style={filterItemStyle}>
               <span style={labelStyle}>Sort By:</span>
-              <span style={valueStyle}>{appliedfilter.sortBy}</span>
+              <span style={valueStyle}>{capitalizationFirstLetter(appliedfilter.sortBy)}</span>
             </div>
           )}
         </div>
@@ -137,10 +164,11 @@ const Helper = () => {
         <p >No filters applied.</p>
       )}
     </div>
-    </div>
+    
 
       {/* Workers listing */}
-      <div className="user-cards-container">
+      <div className="user-cards-container usercardmodern-container  ">
+        <div className="usercardmodern-card-grid">
         {workers.length > 0 ? (
           workers.map((worker) => (
             <UserCard
@@ -152,7 +180,8 @@ const Helper = () => {
                 profession: worker.profession,
                 hourlyRate: worker.hourlyRate,
                 rating:worker.rating,
-                totalrating:worker.totalRatings
+                totalrating:worker.totalRatings,
+                location:worker.location.description
               }}
               onStartChat={handleStartChat}
             />
@@ -160,6 +189,7 @@ const Helper = () => {
         ) : (
           <p>No workers found</p>
         )}
+      </div>
       </div>
     </div>
   );

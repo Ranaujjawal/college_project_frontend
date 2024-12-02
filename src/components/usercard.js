@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './usercard.css';
+import './usercard1.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import I1 from './images/I9.jpg'
@@ -108,8 +108,10 @@ const UserCard = ({ user, onStartChat }) => {
       
       if (response.data.success) {
         const newTotalRatings = user.totalrating + 1;
-    const newRating = ((user.rating * user.totalrating) + rating) / newTotalRatings;
-        setCurrentRating(newRating);
+        const newRating = ((user.rating * user.totalrating) + rating) / newTotalRatings;
+        const roundedNewRating = parseFloat(newRating.toFixed(1));
+        
+        setCurrentRating(roundedNewRating);
       }
     } catch (error) {
       console.error('Error submitting rating:', error);
@@ -118,12 +120,13 @@ const UserCard = ({ user, onStartChat }) => {
 
   return (
     <>
-      <div className="user-card">
+      {/* <div className="user-card">
         <img src={avurl}
   alt={user.name}
   className="user-avatar" />
         <div className="user-info">
           <h3 className="user-name">{user.name}</h3>
+          {console.log(user)}
           <p className="user-profession">{user.profession}</p>
           <div className="rating-container">
             <StarRating rating={currentRating} />
@@ -145,6 +148,57 @@ const UserCard = ({ user, onStartChat }) => {
       </div>
 
       <RatingModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleRatingSubmit}
+        userName={user.name}
+      />
+       <div className="modern-container">
+      <div className="modern-card-grid"> */}
+      
+               {/* Card 1 */}
+               <div className="usercardmodern-card">
+          <div className="usercardmodern-card-header">
+            <div className="usercardprofile-image-wrapper">
+            <img src={avurl}
+  alt={user.name}
+  className="usercardprofile-image" />
+            </div>
+            {/* <div className="usercardcard-badge">Verified</div> */}
+          </div>
+          
+          <div className="usercardmodern-card-content">
+            <div className="usercarduser-info-primary">
+              <h2 className="usercarduser-name">{user.name}</h2>
+              <p className="usercarduser-title">{user.profession}</p>
+            </div>
+
+            <div className="usercarduser-stats">
+              <div className="usercardstat-item">
+                <span className="usercardstat-value">{currentRating}</span>
+                <span className="usercardstat-label">Rating</span>
+              </div>
+              <div className="usercardstat-divider"></div>
+              {<div className="usercardstat-item">
+                <span className="usercardstat-value">{user.hourlyRate} Rs/hr</span>
+                <span className="usercardstat-label">Hourly Rate</span>
+              </div> }
+            </div>
+
+            <div className="usercarduser-details">
+              <p><span className="usercarddetail-icon">📍</span>{user.location}</p>
+            </div>
+
+            <div className="usercardcard-actions">
+              <button className="usercardaction-btn usercardprimary" onClick={startChat}>Connect</button>
+            </div>
+            <div className="usercardcard-actions">
+              <button className="usercardaction-btn usercardprimary" onClick={() => setIsModalOpen(true)}>Rate User</button>
+            </div>
+          </div>
+        </div>
+
+        <RatingModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSubmit={handleRatingSubmit}

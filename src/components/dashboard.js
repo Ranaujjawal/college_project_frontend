@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import Chats from './Chats';
+import Chat1 from './testchat.js'
 import Helper from './Helper';
 import Profile from './Profile';
 import axios from 'axios';

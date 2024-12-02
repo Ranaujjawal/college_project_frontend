@@ -464,6 +464,7 @@ hr {
     }
 
     .nav-links.active {
+        z-index: 10;
         display: flex;
     }
 

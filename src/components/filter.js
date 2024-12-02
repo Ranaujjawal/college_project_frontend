@@ -85,15 +85,15 @@ const WorkerFilter = ({ onSubmit}) => {
     <div className="relative w-full max-w-md mx-auto">
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center w-full p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+        className="flex items-center justify-center f-L w-full p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition marg"
       >
         {isOpen ? (
           <>
-            <X className="mr-2" size={20} /> Close Filters
+            <X className="mr-2" size={20} /> Filter Services
           </>
         ) : (
           <>
-            <Filter className="mr-2" size={20} /> Open Filters
+            <Filter className="mr-2" size={20} /> Filter Services
           </>
         )}
       </button>
@@ -101,7 +101,7 @@ const WorkerFilter = ({ onSubmit}) => {
       {isOpen && (
         <form 
           onSubmit={handleSubmit} 
-          className="absolute z-10 w-full bg-white shadow-lg rounded-md p-4 mt-2 border"
+          className="absolute z-10 w-full bg-white shadow-lg rounded-md p-4 mt-2 min-w border"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="form-group">
@@ -177,7 +177,7 @@ const WorkerFilter = ({ onSubmit}) => {
               </select>
             </div>
             <div className="form-group">
-              <label className="block text-sm font-medium text-gray-700">Radius</label>
+              <label className="block text-sm font-medium text-gray-700 mr-2">Radius</label>
               <select
                 name="radius"
                 value={tempFilters.radius}

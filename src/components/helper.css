@@ -1,9 +1,22 @@
-.user-cards-container {
+/* .user-cards-container {
   display: flex;
   flex-direction: row; /* Cards will be displayed horizontally */
-  flex-wrap: wrap; /* Allows cards to wrap on smaller screens */
-  gap: 16px; /* Space between cards */
-  justify-content: center; 
+  /* flex-wrap: wrap; Allows cards to wrap on smaller screens */
+  /* gap: 16px; Space between cards */
+  /* justify-content: space-evenly;  */
+/* } */ 
+.usercardmodern-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f8f9fa;
+}
+
+.usercardmodern-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  padding: 20px;
 }
   /* Top Page Container */
 .toppage {
@@ -12,7 +25,7 @@
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   max-width: 1200px;
-  margin: 20px auto;
+  margin:  auto;
 }
 
 /* Title Styles */
@@ -37,7 +50,7 @@
 
 /* Filter Alignment */
 .alignfilter {
-  margin: 24px 0;
+  margin: 24px ;
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -49,7 +62,7 @@
   font-size: 1.25rem;
   color: #4a5568;
   margin: 24px 0 16px 0;
-  font-weight: 500;
+  font-weight: 700;
   border-bottom: 2px solid #e2e8f0;
   padding-bottom: 8px;
 }
@@ -94,7 +107,10 @@
   border-radius: 4px;
   font-size: 0.95rem;
 }
-
+.AppliedFiltercontainer {
+  margin-right: 45px;
+  margin-left : 45px;
+}
 /* Animation for filter items */
 @keyframes fadeIn {
   from {
@@ -113,6 +129,12 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .usercardmodern-card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* gap: 20px; */
+    padding: 10px;
+  }
+  
   .toppage {
     padding: 16px;
     margin: 16px;
@@ -130,6 +152,11 @@
     padding: 10px 12px;
   }
 
+  .AppliedFiltercontainer {
+    margin-left : 20px;
+    margin-right: 20px;
+  }
+
   .appliedfilterhead {
     font-size: 1.1rem;
     text-align: center;
@@ -137,6 +164,9 @@
 }
 
 @media (max-width: 480px) {
+  .usercardmodern-container {
+    padding: 5px;
+  }
   .toppage {
     padding: 12px;
     margin: 12px;
@@ -154,6 +184,10 @@
   .filter-value {
     font-size: 0.9rem;
     padding: 3px 8px;
+  }
+  .AppliedFiltercontainer {
+    margin-left : 20px;
+    margin-right: 20px;
   }
 }
 
