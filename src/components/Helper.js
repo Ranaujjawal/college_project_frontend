@@ -5,7 +5,7 @@ import { useNavigate  } from 'react-router-dom';
 import Filter from './filter.js'
 import './helper.css'
 import I14 from './images/I14.webp'
-import { WrapText } from 'lucide-react';
+import { Verified, WrapText } from 'lucide-react';
 const Helper = () => {
   axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
   axios.defaults.withCredentials = true;
@@ -181,7 +181,8 @@ const Helper = () => {
                 hourlyRate: worker.hourlyRate,
                 rating:worker.rating,
                 totalrating:worker.totalRatings,
-                location:worker.location.description
+                location:worker.location.description,
+                Verified:worker.isVerified
               }}
               onStartChat={handleStartChat}
             />

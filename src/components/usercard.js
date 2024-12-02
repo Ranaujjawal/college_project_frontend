@@ -164,7 +164,10 @@ const UserCard = ({ user, onStartChat }) => {
   alt={user.name}
   className="usercardprofile-image" />
             </div>
-            {/* <div className="usercardcard-badge">Verified</div> */}
+            <div>
+  {user.Verified ? <div className="usercardcard-badge">Verified</div> : null}
+</div>
+
           </div>
           
           <div className="usercardmodern-card-content">
