@@ -602,7 +602,7 @@
   align-self: flex-end;
 }
 .chatmap{
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
     max-height: fit-content
 }
 /* Responsive styles for smaller screens */
@@ -610,9 +610,9 @@
   .chats-container {
     flex-direction: column;
   }
-  /* .chatmap{
-    /* max-height: 400px; */
-  /* } */ 
+   .chatmap{
+     max-height: 30rem; 
+   }  
 
   .sidebarchat {
     display: none; /* Default hidden */
@@ -637,7 +637,7 @@
     display: block;
   }
 }
-@media (max-height: 800px ),( max-width:420px){
+/* @media (max-height: 800px ),( max-width:420px){
   .chat-history {
     overflow-y: auto;
     max-height: 40%;
@@ -652,7 +652,7 @@
 @media (max-height: 800px){
   .chat-history {
     overflow-y: auto;
-    max-height: 400%;
+    max-height: 40%;
    }
 }
 @media (max-height: 700px){
@@ -660,4 +660,4 @@
     overflow-y: auto;
     max-height: 33%;
    }
-}
+} */

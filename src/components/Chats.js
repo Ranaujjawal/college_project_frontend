@@ -211,7 +211,7 @@ const Chats = () => {
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [file, setFile] = useState(null);
   const socketRef = useRef(null);
-
+  const chatEndRef = useRef(null); 
   // Fetch online users and chat history
   const fetchChatHistory = async () => {
     try {
@@ -289,7 +289,11 @@ const Chats = () => {
     setSelectedUserName(null);
     setChats([]);
   };
-
+  useEffect(() => {
+    if (chatEndRef.current) {
+      chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [chats, selectedUserId]); 
   return (
     <div className="chats-container">
       {/* Sidebar: Online users */}
@@ -339,7 +343,7 @@ const Chats = () => {
               </div>
             <div className="chat-history">
              
-              {/* <div className='chatmap'> */}
+              <div className='chatmap'>
               {chats.map((chat, index) => (
                 <div
                   key={index}
@@ -360,7 +364,8 @@ const Chats = () => {
                   )}
                 </div>
               ))}
-              {/* </div> */}
+              <div ref={chatEndRef} />
+              </div>
             </div>
             <div className="chat-input">
               <input
