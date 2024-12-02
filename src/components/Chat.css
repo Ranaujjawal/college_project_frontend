@@ -567,11 +567,23 @@
 }
 /**************/
 .close-chat-btn {
-  background: transparent;
+  background: linear-gradient(135deg, #6e8efb, #a777e3); /* Gradient background */
   border: none;
+  color: white; /* Text color */
   font-size: 24px;
   cursor: pointer;
+  border-radius: 12px; /* Rounded corners */
+  padding: 10px 20px; /* Padding */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
 }
+
+.close-chat-btn:hover {
+  background: linear-gradient(135deg, #a777e3, #6e8efb); /* Reverse gradient on hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+  transform: translateY(-2px); /* Lift effect on hover */
+}
+
 
 .incoming,
 .outgoing {
