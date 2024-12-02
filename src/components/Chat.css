@@ -590,6 +590,8 @@
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
+  white-space: normal;
+    word-wrap: break-word;
 }
 
 .incoming {
@@ -636,6 +638,10 @@
   .close-chat-btn {
     display: block;
   }
+  .incoming,
+.outgoing {
+  max-width: 8rem;
+}
 }
 /* @media (max-height: 800px ),( max-width:420px){
   .chat-history {
